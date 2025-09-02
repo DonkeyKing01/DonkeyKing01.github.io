@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reed's home</title>
+    <title>学习资料站</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,8 +11,13 @@
     <div class="main-container">
         <header class="landing-header">
             <h1>Reed's home</h1>
-            <p>Wish u a nice day!</p>
-        </header>
+            <p>Thank you for your service and sacrifice!</p>
+            
+            <div id="music-player-container">
+                <p class="music-prompt">“游历过成人世界，谁没有无形伤疤～”</p>
+                <i id="play-pause-btn" class="fas fa-play"></i>
+            </div>
+            </header>
         <main class="navigation-grid">
             <a href="preface.html" class="nav-card">
                 <h2>前言</h2>
@@ -29,13 +34,11 @@
         </main>
     </div>
 
-    <div id="music-player">
-        <i id="play-pause-btn" class="fas fa-play"></i>
-    </div>
     <audio id="background-music" loop>
         <source src="your-music-file.mp3" type="audio/mpeg">
         你的浏览器不支持 audio 标签。
     </audio>
+
     <footer>
         <p>&copy; 2025 Reed. All rights reserved.</p>
     </footer>
@@ -45,7 +48,7 @@
         const backgroundMusic = document.getElementById('background-music');
 
         playPauseBtn.addEventListener('click', () => {
-            if (backgroundMusic.paused) {
+            if (background-music.paused) {
                 backgroundMusic.play();
                 playPauseBtn.classList.remove('fa-play');
                 playPauseBtn.classList.add('fa-pause');
@@ -56,5 +59,5 @@
             }
         });
     </script>
-    </body>
+</body>
 </html>

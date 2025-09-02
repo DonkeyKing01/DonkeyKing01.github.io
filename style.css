@@ -200,7 +200,7 @@ footer {
 /* --- 新主页样式 --- */
 
 .landing-page {
-    background-image: url('https://source.unsplash.com/random/1920x1080?nature,water'); /* 随机图片API */
+    background-image: url('https://picsum.photos/1920/1080'); /* 随机图片API */
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* 固定背景图 */

@@ -48,7 +48,8 @@
         const backgroundMusic = document.getElementById('background-music');
 
         playPauseBtn.addEventListener('click', () => {
-            if (background-music.paused) {
+            // 修正了这里的变量名 background-music -> backgroundMusic
+            if (backgroundMusic.paused) {
                 backgroundMusic.play();
                 playPauseBtn.classList.remove('fa-play');
                 playPauseBtn.classList.add('fa-pause');

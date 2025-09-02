@@ -45,44 +45,17 @@
     <script>
         const playPauseBtn = document.getElementById('play-pause-btn');
         const backgroundMusic = document.getElementById('background-music');
-
-        // 新增：监听音频文件加载错误事件
-        backgroundMusic.addEventListener('error', (e) => {
-            console.error("音频文件加载错误！请检查 src 路径。");
-            alert("音频文件加载失败！\n\n请按以下步骤检查：\n1. 音乐文件名是否与代码中的完全一致（包括大小写）？\n2. 音乐文件是否已上传，并且和 index.html 在同一个文件夹？");
-        });
-
+    
         playPauseBtn.addEventListener('click', () => {
-            console.log("播放/暂停 按钮被点击了");
-
+            // 修正了这里的变量名 background-music -> backgroundMusic
             if (backgroundMusic.paused) {
-                console.log("当前是暂停状态，尝试播放音乐...");
-            
-                // backgroundMusic.play() 返回一个 Promise
-                const playPromise = backgroundMusic.play();
-
-                if (playPromise !== undefined) {
-                    playPromise.then(_ => {
-                        // 只有播放成功时，才改变图标
-                        playPauseBtn.classList.remove('fa-play');
-                        playPauseBtn.classList.add('fa-pause');
-                        console.log("音乐播放成功！");
-                    })
-                    .catch(error => {
-                        console.error("音乐播放失败:", error);
-                        // 只有明确收到错误时，才提示
-                        alert("音乐播放被浏览器阻止了。请确保您已与页面交互。");
-                    });
-                } else {
-                    // 如果 playPromise 是 undefined，说明没有有效的音频源
-                    console.error("无法播放：没有有效的音频源。");
-                    alert("无法播放！\n\n看起来音频文件路径不正确，请仔细检查 <source> 标签中的 src 属性。");
-                }
+                backgroundMusic.play();
+                playPauseBtn.classList.remove('fa-play');
+                playPauseBtn.classList.add('fa-pause');
             } else {
                 backgroundMusic.pause();
                 playPauseBtn.classList.remove('fa-pause');
                 playPauseBtn.classList.add('fa-play');
-                console.log("音乐已暂停。");
             }
         });
     </script>

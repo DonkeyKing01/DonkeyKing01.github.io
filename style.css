@@ -296,3 +296,35 @@ footer {
 #music-player:hover {
     background-color: #004494; /* 鼠标悬停时加深颜色 */
 }
+/* --- 添加这段新的 CSS --- */
+
+/* 音乐播放器容器 */
+#music-player-container {
+    margin-top: 1.5rem; /* 与上方文字的间距 */
+    color: #fff; /* 设置文字和图标的颜色为白色 */
+    text-align: center; /* 内部元素居中 */
+}
+
+/* 引导文字的样式 */
+.music-prompt {
+    font-size: 1rem;
+    margin-bottom: 0.5rem; /* 与下方图标的间距 */
+    opacity: 0.9;
+}
+
+/* 播放/暂停图标的样式 */
+#play-pause-btn {
+    font-size: 2.5rem; /* 调整图标大小 */
+    cursor: pointer; /* 鼠标悬停时显示为手形 */
+    transition: transform 0.2s ease; /* 添加一个简单的动画效果 */
+}
+
+#play-pause-btn:hover {
+    transform: scale(1.1); /* 鼠标悬停时放大图标 */
+}
+
+/* 确保 landing-header 内部的 p 标签颜色也是白色 */
+.landing-header p {
+    color: #fff;
+    opacity: 0.9;
+}

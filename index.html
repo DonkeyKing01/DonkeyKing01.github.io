@@ -42,23 +42,39 @@
     <footer>
         <p>&copy; 2025 Reed. All rights reserved.</p>
     </footer>
-
     <script>
         const playPauseBtn = document.getElementById('play-pause-btn');
         const backgroundMusic = document.getElementById('background-music');
 
         playPauseBtn.addEventListener('click', () => {
-            // 修正了这里的变量名 background-music -> backgroundMusic
+            console.log("播放/暂停 按钮被点击了"); // 调试信息1：确认点击事件
+
             if (backgroundMusic.paused) {
-                backgroundMusic.play();
-                playPauseBtn.classList.remove('fa-play');
-                playPauseBtn.classList.add('fa-pause');
+                console.log("当前是暂停状态，尝试播放音乐..."); // 调试信息2：确认进入播放逻辑
+
+                // backgroundMusic.play() 会返回一个 Promise
+                // 我们可以用 .catch() 来捕获任何可能发生的错误
+                const playPromise = backgroundMusic.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // 播放成功
+                        playPauseBtn.classList.remove('fa-play');
+                        playPauseBtn.classList.add('fa-pause');
+                        console.log("音乐播放成功！");
+                    })
+                    .catch(error => {
+                        // 播放失败，并在控制台显示错误信息
+                        console.error("音乐播放失败:", error);
+                    });
+                }
             } else {
                 backgroundMusic.pause();
                 playPauseBtn.classList.remove('fa-pause');
                 playPauseBtn.classList.add('fa-play');
+                console.log("音乐已暂停。");
             }
         });
     </script>
-</body>
+    </body>
 </html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习资料站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="landing-page">
+    <div class="main-container">
+        <header class="landing-header">
+            <h1>Reed's home</h1>
+            <p>Thank you for your service and sacrifice!</p>
+            
+            <div id="music-player-container">
+                <p class="music-prompt">“游历过成人世界，谁没有无形伤疤～”</p>
+                <i id="play-pause-btn" class="fas fa-play"></i>
+            </div>
+            </header>
+        <main class="navigation-grid">
+            <a href="preface.html" class="nav-card">
+                <h2>前言</h2>
+                <p>关于本站的一些说明。</p>
+            </a>
+            <a href="resources.html" class="nav-card">
+                <h2>资源汇总</h2>
+                <p>各科学习资料与笔记。</p>
+            </a>
+            <a href="blog.html" class="nav-card">
+                <h2>我的日志</h2>
+                <p>记录学习过程中的思考。</p>
+            </a>
+        </main>
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="https://drive.google.com/uc?export=download&id=1ySGLICG5MKMVbB6CBeMYL7y3uYK58fKd" type="audio/mpeg">
+        你的浏览器不支持 audio 标签。
+    </audio>
+
+    <footer>
+        <p>&copy; 2025 Reed. All rights reserved.</p>
+    </footer>
+    <script>
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const backgroundMusic = document.getElementById('background-music');
+    
+        playPauseBtn.addEventListener('click', () => {
+            // 修正了这里的变量名 background-music -> backgroundMusic
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                playPauseBtn.classList.remove('fa-play');
+                playPauseBtn.classList.add('fa-pause');
+            } else {
+                backgroundMusic.pause();
+                playPauseBtn.classList.remove('fa-pause');
+                playPauseBtn.classList.add('fa-play');
+            }
+        });
+    </script>
+    </body>
+</html>

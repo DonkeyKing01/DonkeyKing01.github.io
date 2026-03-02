@@ -2,6 +2,8 @@
 
 简约、学术风格的单页主页，基于 Next.js App Router + Tailwind CSS。
 
+> 说明：本仓库用于 `Reed2006.github.io` 用户主页，历史内容已合并保留。
+
 ## 本地运行
 
 ```bash

@@ -1,0 +1,330 @@
+:root {
+    --primary-color: #0056b3; /* 深蓝色，用于强调 */
+    --text-color: #333;
+    --background-color: #f8f9fa; /* 浅灰色背景 */
+    --card-background: #ffffff;
+    --border-color: #e0e0e0;
+    --font-family-sans: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-family-serif: "Merriweather", Georgia, serif; /* 可选的衬线字体 */
+}
+
+body {
+    font-family: var(--font-family-sans);
+    line-height: 1.6;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 1.5rem 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+main {
+    flex: 1; /* 让内容区域填充可用空间 */
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.course-card {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.course-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.course-card h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    line-height: 1.3;
+}
+
+.course-card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.course-card .instructor {
+    font-style: italic;
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
+.card-tag {
+    display: inline-block;
+    background-color: #eee;
+    color: #666;
+    padding: 0.3em 0.6em;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin-top: 0.8rem;
+    align-self: flex-start; /* 标签靠左对齐 */
+}
+
+.card-tag.external-link {
+    background-color: #d1ecf1; /* 浅蓝色 */
+    color: #0c5460;
+}
+
+
+footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: #343a40; /* 深灰色 */
+    color: #f8f9fa;
+    margin-top: auto; /* 让页脚始终在底部 */
+    font-size: 0.9rem;
+}
+
+/* 课程详情页面的通用样式 */
+.content-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: var(--card-background);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.content-container h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+    font-size: 2rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.content-container p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.download-list {
+    list-style: none;
+    padding: 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 2rem;
+}
+
+.download-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.download-list li span {
+    flex-grow: 1; /* 文件名占据更多空间 */
+    margin-right: 1rem;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.download-button {
+    background-color: #28a745; /* 绿色 */
+    color: white;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+    white-space: nowrap; /* 防止按钮文字换行 */
+}
+
+.download-button:hover {
+    background-color: #218838;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 2.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    transition: background-color 0.2s, color 0.2s;
+}
+.back-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* 将这些代码添加到你 style.css 文件的末尾 */
+
+/* --- 新主页样式 --- */
+
+.landing-page {
+    background-image: url('https://picsum.photos/1920/1080'); /* 随机图片API */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* 固定背景图 */
+}
+
+.main-container {
+    background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.landing-header {
+    text-align: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.landing-header h1 {
+    font-size: 3rem;
+    color: #fff;
+}
+
+.navigation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding-top: 2rem;
+}
+
+.nav-card {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.nav-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.nav-card h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+}
+
+/* --- 日志页面样式 --- */
+.log-entry {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.log-entry:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.log-date {
+    font-style: italic;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* --- 音乐播放器样式 --- */
+#music-player {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
+}
+
+#music-player:hover {
+    background-color: #004494; /* 鼠标悬停时加深颜色 */
+}
+/* --- 添加这段新的 CSS --- */
+
+/* 音乐播放器容器 */
+#music-player-container {
+    margin-top: 1.5rem; /* 与上方文字的间距 */
+    color: #fff; /* 设置文字和图标的颜色为白色 */
+    text-align: center; /* 内部元素居中 */
+}
+
+/* 引导文字的样式 */
+.music-prompt {
+    font-size: 1rem;
+    margin-bottom: 0.5rem; /* 与下方图标的间距 */
+    opacity: 0.9;
+}
+
+/* 播放/暂停图标的样式 */
+#play-pause-btn {
+    font-size: 2.5rem; /* 调整图标大小 */
+    cursor: pointer; /* 鼠标悬停时显示为手形 */
+    transition: transform 0.2s ease; /* 添加一个简单的动画效果 */
+}
+
+#play-pause-btn:hover {
+    transform: scale(1.1); /* 鼠标悬停时放大图标 */
+}
+
+/* 确保 landing-header 内部的 p 标签颜色也是白色 */
+.landing-header p {
+    color: #fff;
+    opacity: 0.9;
+}

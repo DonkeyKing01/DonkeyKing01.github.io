@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Outfit } from "next/font/google";
+import { Source_Serif_4, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/profile";
 
-const sans = Outfit({
+const serif = Source_Serif_4({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-serif",
+  weight: ["400", "600", "700"]
+});
+
+const sans = DM_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
@@ -14,17 +21,17 @@ const mono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-mono",
-  weight: ["300", "400", "500", "600", "700"]
+  weight: ["400", "500"]
 });
 
 export const metadata: Metadata = {
-  title: `${profile.name} | Economics`,
+  title: `${profile.displayName} (${profile.name}) | Economics & AI`,
   description: profile.bio
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
       <body>{children}</body>
     </html>
   );

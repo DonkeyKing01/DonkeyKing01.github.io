@@ -1,265 +1,461 @@
 import { profile } from "@/profile";
+import ScrollReveal from "./scroll-reveal";
 
-function SectionTitle({ children }: { children: React.ReactNode }) {
+/* ── Tiny helpers ──────────────────────────────────────────────── */
+
+function NavBar() {
+  const items = [
+    { label: "About", href: "#about" },
+    { label: "Experience", href: "#experience" },
+    { label: "Research", href: "#research" },
+    { label: "Skills", href: "#skills" },
+    { label: "Courses", href: "#courses" },
+    { label: "Contact", href: "#contact" }
+  ];
+
   return (
-    <h2 className="text-[12px] font-medium tracking-[0.16em] uppercase text-ink-950/70">
+    <nav className="fixed top-0 left-0 right-0 z-50 nav-blur bg-white/70 border-b border-paper-200/60">
+      <div className="mx-auto max-w-[1200px] px-6 flex items-center justify-between h-14">
+        <a href="#" className="font-serif text-lg font-semibold text-ink-950 tracking-tight">
+          {profile.displayName}
+        </a>
+        <div className="hidden md:flex items-center gap-8">
+          {items.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-sm text-ink-950/70 hover:text-ink-950 transition-colors link-underline"
+            >
+              {item.label}
+            </a>
+          ))}
+          <a
+            href={profile.cvHref}
+            className="text-sm font-medium text-white bg-ink-950 px-4 py-1.5 rounded-full hover:bg-ink-900 transition-colors"
+          >
+            Resume
+          </a>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="text-xs font-medium tracking-[0.18em] uppercase text-accent-600 mb-3">
+      {children}
+    </p>
+  );
+}
+
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="font-serif text-3xl md:text-5xl font-semibold tracking-tight text-ink-950 leading-[1.1]">
       {children}
     </h2>
   );
 }
 
-function ExternalLink({
-  href,
-  label
-}: {
-  href: string;
-  label: string;
-}) {
-  return (
-    <a
-      href={href}
-      className="inline-flex items-center gap-2 rounded-full border border-paper-200 bg-white/70 px-3 py-1.5 text-sm text-ink-950/85 shadow-soft backdrop-blur-sm transition hover:-translate-y-[1px] hover:bg-white"
-      rel="noreferrer"
-      target="_blank"
-    >
-      <span className="font-medium">{label}</span>
-      <span aria-hidden="true" className="text-ink-950/35">
-        (external)
-      </span>
-    </a>
-  );
-}
-
-function MutedLine({ children }: { children: React.ReactNode }) {
-  return <p className="text-[15px] leading-relaxed text-ink-950/70">{children}</p>;
-}
-
-function ResourcePill({ href, label }: { href: string; label: string }) {
-  const isActive = href.trim().length > 0 && href.trim() !== "#";
-  const base =
-    "inline-flex items-center rounded-full border border-paper-200 bg-paper-50 px-3 py-1 text-sm text-ink-950/75 transition";
-
-  if (!isActive) {
-    return <span className={`${base} cursor-not-allowed opacity-60`}>{label}</span>;
-  }
-
+function ArrowLink({ href, label }: { href: string; label: string }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noreferrer"
-      className={`${base} hover:bg-white hover:-translate-y-[1px]`}
+      className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors"
     >
       {label}
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="mt-px">
+        <path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
     </a>
   );
 }
+
+/* ── Page ──────────────────────────────────────────────────────── */
 
 export default function Page() {
   return (
-    <main className="page-in">
-      <div className="mx-auto max-w-[1100px] px-6 pb-20 pt-10 md:px-10 md:pt-14">
-        <header className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-10">
-          <div className="md:col-span-8">
-            <div className="inline-flex items-center gap-3">
-              <div className="h-2.5 w-2.5 rounded-full bg-accent-600 shadow-[0_0_0_5px_rgba(15,118,110,0.12)]" />
-              <p className="text-xs tracking-[0.18em] uppercase text-ink-950/55">
-                {profile.tagline}
-              </p>
-            </div>
+    <>
+      <ScrollReveal />
+      <NavBar />
 
-            <h1 className="mt-5 font-semibold tracking-[-0.02em] text-[40px] leading-[1.03] md:text-[56px]">
+      {/* ════════ HERO ════════ */}
+      <section className="section-full">
+        <div
+          className="section-bg"
+          style={{ backgroundImage: `url(${profile.heroBg})` }}
+        />
+        <div className="hero-overlay" />
+        <div className="relative z-10 mx-auto max-w-[1200px] px-6 w-full py-32 md:py-0">
+          <div className="max-w-2xl">
+            <p className="text-sm tracking-[0.2em] uppercase text-white/70 mb-4">
+              {profile.tagline}
+            </p>
+            <h1 className="font-serif text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05]">
               {profile.name}
             </h1>
-
-            <p className="mt-4 max-w-[66ch] text-[16px] leading-relaxed text-ink-950/75 md:text-[17px]">
+            <p className="mt-2 font-serif text-2xl md:text-3xl text-white/80 font-light italic">
+              goes by {profile.displayName}
+            </p>
+            <p className="mt-6 text-base md:text-lg text-white/75 leading-relaxed max-w-[55ch]">
               {profile.bio}
             </p>
-
-            <div className="mt-6 flex flex-wrap gap-2.5">
-              {profile.links.map((l, i) => (
-                <ExternalLink key={`${l.label}:${l.href}:${i}`} href={l.href} label={l.label} />
+            <div className="mt-8 flex flex-wrap gap-3">
+              {profile.links.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/20"
+                >
+                  {l.label}
+                </a>
               ))}
+              <a
+                href={`mailto:${profile.email}`}
+                className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/20"
+              >
+                Email
+              </a>
             </div>
+          </div>
+        </div>
+        {/* scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 bounce-down">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white/60">
+            <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+      </section>
 
-            <div className="mt-8">
-              <SectionTitle>Research interests</SectionTitle>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {profile.researchInterests.map((x, i) => (
+      {/* ════════ ABOUT ════════ */}
+      <section id="about" className="section-light py-24 md:py-32">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="fade-up grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
+            <div className="md:col-span-5">
+              <div className="rounded-3xl overflow-hidden shadow-soft">
+                <img
+                  src={profile.photo.src}
+                  alt={profile.photo.alt}
+                  className="w-full aspect-[4/5] object-cover"
+                />
+              </div>
+            </div>
+            <div className="md:col-span-7">
+              <SectionLabel>About me</SectionLabel>
+              <SectionHeading>
+                Economics meets<br />Artificial Intelligence
+              </SectionHeading>
+              <p className="mt-6 text-base leading-relaxed text-ink-950/70 max-w-[55ch]">
+                {profile.bio}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {profile.researchInterests.map((x) => (
                   <span
-                    key={`${x}:${i}`}
-                    className="rounded-full border border-paper-200 bg-white/60 px-3 py-1 text-sm text-ink-950/75 backdrop-blur-sm"
+                    key={x}
+                    className="rounded-full border border-paper-200 bg-paper-100 px-3 py-1 text-sm text-ink-950/70"
                   >
                     {x}
                   </span>
                 ))}
               </div>
-            </div>
-          </div>
-
-          <aside className="md:col-span-4">
-            <div className="space-y-4">
-              <div className="rounded-[28px] bg-white/60 p-3 shadow-frame backdrop-blur-sm">
-                <div className="relative overflow-hidden rounded-[22px] bg-paper-50">
-                  <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink-950/10" />
-                  <div className="pointer-events-none absolute inset-0 shadow-[inset_0_1px_0_rgba(255,255,255,0.55)]" />
-                  <img
-                    src={profile.photo.src}
-                    alt={profile.photo.alt}
-                    className="aspect-[4/5] w-full object-cover"
-                  />
+              <div className="mt-8 grid grid-cols-2 gap-6">
+                <div>
+                  <p className="text-sm text-ink-950/50">Education</p>
+                  <p className="mt-1 text-sm font-medium text-ink-950">
+                    {profile.education[0].school}
+                  </p>
+                  <p className="text-sm text-ink-950/60">{profile.education[0].period}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-ink-950/50">Location</p>
+                  <p className="mt-1 text-sm font-medium text-ink-950">{profile.location}</p>
+                  <p className="text-sm text-ink-950/60">
+                    <a href={`mailto:${profile.email}`} className="link-underline">
+                      {profile.email}
+                    </a>
+                  </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <div className="rounded-3xl border border-paper-200 bg-white/65 p-6 shadow-soft backdrop-blur-sm">
-                <SectionTitle>At a glance</SectionTitle>
-
-                <dl className="mt-4 space-y-4">
-                  <div>
-                    <dt className="text-sm font-medium text-ink-950/80">Email</dt>
-                    <dd className="mt-1 text-[15px] text-ink-950/70">
-                      <a
-                        className="underline underline-offset-4 hover:text-ink-950"
-                        href={`mailto:${profile.email}`}
-                      >
-                        {profile.email}
-                      </a>
-                    </dd>
-                  </div>
-
-                  <div>
-                    <dt className="text-sm font-medium text-ink-950/80">Location</dt>
-                    <dd className="mt-1 text-[15px] text-ink-950/70">{profile.location}</dd>
-                  </div>
-
-                  <div className="pt-1">
-                    <a
-                      className="inline-flex w-full items-center justify-between rounded-2xl border border-paper-200 bg-white px-4 py-3 text-sm font-medium text-ink-950/85 transition hover:-translate-y-[1px] hover:bg-paper-50 active:translate-y-[1px]"
-                      href={profile.cvHref}
-                    >
-                      <span>Curriculum Vitae (PDF)</span>
-                      <span aria-hidden="true" className="text-ink-950/35">
-                        -&gt;
-                      </span>
-                    </a>
-                    <p className="mt-2 text-xs text-ink-950/55">
-                      Add your CV file at <span className="font-mono">public/cv.pdf</span>.
+      {/* ════════ PROFESSIONAL EXPERIENCE ════════ */}
+      <section id="experience" className="section-warm py-24 md:py-32">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="fade-up mb-12">
+            <SectionLabel>Professional Experience</SectionLabel>
+            <SectionHeading>Where I have worked</SectionHeading>
+          </div>
+          <div className="stagger space-y-8">
+            {profile.professionalExperience.map((exp, i) => (
+              <div
+                key={`exp-${i}`}
+                className="rounded-3xl bg-white/80 border border-paper-200 p-8 md:p-10 backdrop-blur-sm"
+              >
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                  <div className="flex-1">
+                    <p className="font-serif text-xl md:text-2xl font-semibold text-ink-950">
+                      {exp.role}
+                    </p>
+                    <p className="mt-1 text-base text-ink-950/70">
+                      {exp.companyUrl ? (
+                        <a
+                          href={exp.companyUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="font-medium text-accent-600 link-underline"
+                        >
+                          {exp.company}
+                        </a>
+                      ) : (
+                        <span className="font-medium">{exp.company}</span>
+                      )}
+                      {" "}&middot; {exp.location}
                     </p>
                   </div>
-                </dl>
+                  <p className="text-sm text-ink-950/50 font-mono whitespace-nowrap">{exp.period}</p>
+                </div>
+                <ul className="mt-5 space-y-2">
+                  {exp.bullets.map((b, j) => (
+                    <li key={j} className="flex gap-3 text-[15px] leading-relaxed text-ink-950/70">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600 shrink-0" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-          </aside>
-        </header>
-
-        <div className="mt-10 grid grid-cols-1 gap-y-14 md:mt-12 md:grid-cols-12 md:gap-x-10 md:gap-y-16 md:items-start">
-          <section id="papers" className="md:col-span-6">
-            <SectionTitle>Working papers</SectionTitle>
-            <ul className="mt-5 space-y-5">
-              {profile.workingPapers.map((p, i) => (
-                <li
-                  key={`${p.title}:${i}`}
-                  className="rounded-3xl border border-paper-200 bg-white/55 p-6 backdrop-blur-sm"
-                >
-                  <p className="text-[17px] font-semibold leading-snug text-ink-950">{p.title}</p>
-                  <MutedLine>{p.authors}</MutedLine>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {p.links.map((l, j) => (
-                      <ResourcePill key={`${l.label}:${l.href}:${j}`} href={l.href} label={l.label} />
-                    ))}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section id="education" className="md:col-span-6">
-            <SectionTitle>Education</SectionTitle>
-            <ul className="mt-5 space-y-4">
-              {profile.education.map((e, i) => (
-                <li
-                  key={`${e.school}:${i}`}
-                  className="rounded-3xl border border-paper-200 bg-white/55 p-6 backdrop-blur-sm"
-                >
-                  <p className="text-[16px] font-semibold text-ink-950">{e.school}</p>
-                  <MutedLine>{e.degree}</MutedLine>
-                  <p className="mt-2 text-sm text-ink-950/65">{e.period}</p>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section id="skills" className="md:col-span-6">
-            <SectionTitle>Relevant skills and projects</SectionTitle>
-            <ul className="mt-5 space-y-4">
-              {profile.skillsAndProjects.map((p, i) => (
-                <li
-                  key={`${p.title}:${i}`}
-                  className="rounded-3xl border border-paper-200 bg-white/55 p-6 backdrop-blur-sm"
-                >
-                  <p className="text-[16px] font-semibold leading-snug text-ink-950">{p.title}</p>
-                  <p className="mt-2 text-[15px] leading-relaxed text-ink-950/70">{p.description}</p>
-
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {p.tags.map((t, j) => (
-                      <span
-                        key={`${t}:${j}`}
-                        className="rounded-full border border-paper-200 bg-paper-50 px-3 py-1 text-sm text-ink-950/75"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {p.links.map((l, j) => (
-                      <ResourcePill key={`${l.label}:${l.href}:${j}`} href={l.href} label={l.label} />
-                    ))}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section id="classes" className="md:col-span-6">
-            <SectionTitle>Relevant Class</SectionTitle>
-            <ul className="mt-5 space-y-4">
-              {profile.relevantClasses.map((t, i) => (
-                <li
-                  key={`${t.name}:${i}`}
-                  className="rounded-3xl border border-paper-200 bg-white/55 p-6 backdrop-blur-sm"
-                >
-                  <p className="text-[16px] font-semibold text-ink-950">{t.name}</p>
-                  <MutedLine>{t.detail}</MutedLine>
-                  {t.note ? <p className="mt-3 text-sm text-ink-950/65">{t.note}</p> : null}
-                </li>
-              ))}
-            </ul>
-          </section>
+            ))}
+          </div>
         </div>
+      </section>
 
-        <section id="hobbies" className="mt-14 md:mt-16">
-          <SectionTitle>Interests</SectionTitle>
-          <div className="mt-5 rounded-3xl border border-paper-200 bg-white/55 p-6 backdrop-blur-sm">
-            <div className="flex flex-wrap gap-2">
-              {profile.hobbies.map((h, i) => (
-                <span
-                  key={`${h}:${i}`}
-                  className="rounded-full border border-paper-200 bg-paper-50 px-3 py-1 text-sm text-ink-950/75"
+      {/* ════════ HACKATHON (with background image) ════════ */}
+      <section className="section-full">
+        <div
+          className="section-bg"
+          style={{ backgroundImage: `url(${profile.hackathonExperience[0].image})` }}
+        />
+        <div className="relative z-10 mx-auto max-w-[1200px] px-6 w-full py-24 md:py-32">
+          <div className="fade-up max-w-2xl">
+            <SectionLabel>
+              <span className="text-white/70">Hackathon</span>
+            </SectionLabel>
+            <h2 className="font-serif text-3xl md:text-5xl font-semibold tracking-tight text-white leading-[1.1]">
+              {profile.hackathonExperience[0].event}
+            </h2>
+            {profile.hackathonExperience[0].award && (
+              <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-accent-500/90 px-4 py-1.5 text-sm font-medium text-white">
+                {profile.hackathonExperience[0].award}
+              </p>
+            )}
+            <p className="mt-4 text-base text-white/70">
+              {profile.hackathonExperience[0].role} &middot; {profile.hackathonExperience[0].location}
+            </p>
+            <ul className="mt-6 space-y-2">
+              {profile.hackathonExperience[0].bullets.map((b, j) => (
+                <li key={j} className="flex gap-3 text-[15px] leading-relaxed text-white/80">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-500 shrink-0" />
+                  {b}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {profile.hackathonExperience[0].links.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/20"
                 >
-                  {h}
-                </span>
+                  {l.label}
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 13L13 3M13 3H5M13 3v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </a>
               ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <footer className="mt-16 border-t border-paper-200 pt-8">
-          <p className="text-xs tracking-[0.18em] uppercase text-ink-950/55">
-            {profile.footerNote}
-          </p>
+      {/* ════════ RESEARCH / WORKING PAPERS ════════ */}
+      <section id="research" className="section-light py-24 md:py-32">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="fade-up mb-12">
+            <SectionLabel>Academic Research</SectionLabel>
+            <SectionHeading>Working Papers</SectionHeading>
+          </div>
+          <div className="stagger space-y-6">
+            {profile.workingPapers.map((p, i) => (
+              <div
+                key={`paper-${i}`}
+                className="rounded-3xl bg-white/80 border border-paper-200 p-8 md:p-10"
+              >
+                <p className="font-serif text-xl md:text-2xl font-semibold text-ink-950 leading-snug">
+                  {p.title}
+                </p>
+                <p className="mt-2 text-[15px] text-ink-950/60">{p.authors}</p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  {p.links.map((l) => (
+                    <ArrowLink key={l.href} href={l.href} label={l.label} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════ SKILLS & PROJECTS ════════ */}
+      <section id="skills" className="section-warm py-24 md:py-32">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="fade-up mb-12">
+            <SectionLabel>Skills & Projects</SectionLabel>
+            <SectionHeading>What I work with</SectionHeading>
+          </div>
+          <div className="stagger grid grid-cols-1 md:grid-cols-2 gap-6">
+            {profile.skillsAndProjects.map((s, i) => (
+              <div
+                key={`skill-${i}`}
+                className="rounded-3xl bg-white/80 border border-paper-200 p-8"
+              >
+                <p className="font-serif text-xl font-semibold text-ink-950">{s.title}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-ink-950/70">{s.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {s.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full border border-paper-200 bg-paper-50 px-3 py-1 text-xs text-ink-950/60"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  {s.links.map((l) => (
+                    <ArrowLink key={l.href} href={l.href} label={l.label} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════ COURSES ════════ */}
+      <section id="courses" className="section-light py-24 md:py-32">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="fade-up mb-12">
+            <SectionLabel>Coursework</SectionLabel>
+            <SectionHeading>Academic Foundation</SectionHeading>
+          </div>
+          <div className="stagger grid grid-cols-1 md:grid-cols-3 gap-6">
+            {profile.courseCategories.map((cat, i) => (
+              <div
+                key={`cat-${i}`}
+                className="rounded-3xl bg-white/80 border border-paper-200 p-8"
+              >
+                <p className="text-xs font-medium tracking-[0.14em] uppercase text-accent-600 mb-4">
+                  {cat.category}
+                </p>
+                <ul className="space-y-3">
+                  {cat.courses.map((c, j) => (
+                    <li key={j} className="flex items-baseline justify-between gap-3">
+                      <span className="text-[15px] text-ink-950/80">{c.name}</span>
+                      {c.note && (
+                        <span className="text-sm font-mono font-medium text-accent-600 shrink-0">
+                          {c.note}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════ LEADERSHIP (with background image) ════════ */}
+      <section className="section-full">
+        <div
+          className="section-bg"
+          style={{ backgroundImage: `url(${profile.leadership[0].image})` }}
+        />
+        <div className="relative z-10 mx-auto max-w-[1200px] px-6 w-full py-24 md:py-32">
+          <div className="fade-up max-w-2xl">
+            <SectionLabel>
+              <span className="text-white/70">Leadership</span>
+            </SectionLabel>
+            <h2 className="font-serif text-3xl md:text-5xl font-semibold tracking-tight text-white leading-[1.1]">
+              {profile.leadership[0].org}
+            </h2>
+            <p className="mt-4 text-lg text-white/80 font-medium">
+              {profile.leadership[0].role}
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-white/70 max-w-[55ch]">
+              {profile.leadership[0].description}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════ CONTACT / FOOTER ════════ */}
+      <section id="contact" className="section-warm py-24 md:py-32">
+        <div className="mx-auto max-w-[1200px] px-6 text-center">
+          <div className="fade-up">
+            <SectionLabel>Get in touch</SectionLabel>
+            <h2 className="font-serif text-3xl md:text-5xl font-semibold tracking-tight text-ink-950">
+              Let&apos;s connect
+            </h2>
+            <p className="mt-4 text-base text-ink-950/60 max-w-[45ch] mx-auto">
+              I am open to collaborations, research opportunities, and conversations about economics and AI.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <a
+                href={`mailto:${profile.email}`}
+                className="inline-flex items-center gap-2 rounded-full bg-ink-950 px-6 py-3 text-sm font-medium text-white transition hover:bg-ink-900"
+              >
+                {profile.email}
+              </a>
+              {profile.links.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-paper-200 bg-white px-6 py-3 text-sm font-medium text-ink-950/80 transition hover:bg-paper-50"
+                >
+                  {l.label}
+                </a>
+              ))}
+              <a
+                href={profile.cvHref}
+                className="inline-flex items-center gap-2 rounded-full border border-paper-200 bg-white px-6 py-3 text-sm font-medium text-ink-950/80 transition hover:bg-paper-50"
+              >
+                Download CV
+              </a>
+            </div>
+          </div>
+        </div>
+        <footer className="mt-20 border-t border-paper-200 pt-8 mx-auto max-w-[1200px] px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-xs tracking-[0.14em] uppercase text-ink-950/40">
+              {profile.footerNote}
+            </p>
+            <p className="text-xs text-ink-950/40">
+              {profile.name} ({profile.displayName}) &middot; {profile.location}
+            </p>
+          </div>
         </footer>
-      </div>
-    </main>
+      </section>
+    </>
   );
 }

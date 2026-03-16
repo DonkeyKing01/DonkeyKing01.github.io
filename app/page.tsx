@@ -82,12 +82,7 @@ export default function Page() {
       <NavBar />
 
       {/* ════════ HERO ════════ */}
-      <section className="section-full">
-        <div
-          className="section-bg"
-          style={{ backgroundImage: `url(${profile.heroBg})` }}
-        />
-        <div className="hero-overlay" />
+      <section className="section-full" style={{ background: "linear-gradient(160deg, #1a1a1a 0%, #2a2520 100%)" }}>
         <div className="relative z-10 mx-auto max-w-[1200px] px-6 w-full py-32 md:py-0">
           <div className="max-w-2xl">
             <p className="text-sm tracking-[0.2em] uppercase text-white/70 mb-4">
@@ -98,9 +93,6 @@ export default function Page() {
             </h1>
             <p className="mt-2 font-serif text-2xl md:text-3xl text-white/80 font-light italic">
               goes by {profile.displayName}
-            </p>
-            <p className="mt-6 text-base md:text-lg text-white/75 leading-relaxed max-w-[55ch]">
-              {profile.bio}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               {profile.links.map((l) => (
@@ -185,46 +177,55 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ════════ PROFESSIONAL EXPERIENCE ════════ */}
-      <section id="experience" className="section-warm py-24 md:py-32">
-        <div className="mx-auto max-w-[1200px] px-6">
+      {/* ════════ PROFESSIONAL EXPERIENCE (Fudan.jpg background) ════════ */}
+      <section id="experience" className="relative py-24 md:py-32 overflow-hidden">
+        <div
+          className="section-bg"
+          style={{ backgroundImage: `url(/Fudan.jpg)` }}
+        />
+        <div className="hero-overlay" />
+        <div className="relative z-10 mx-auto max-w-[1200px] px-6">
           <div className="fade-up mb-12">
-            <SectionLabel>Professional Experience</SectionLabel>
-            <SectionHeading>Where I have worked</SectionHeading>
+            <SectionLabel>
+              <span className="text-white/70">Professional Experience</span>
+            </SectionLabel>
+            <h2 className="font-serif text-3xl md:text-5xl font-semibold tracking-tight text-white leading-[1.1]">
+              Where I have worked
+            </h2>
           </div>
           <div className="stagger space-y-8">
             {profile.professionalExperience.map((exp, i) => (
               <div
                 key={`exp-${i}`}
-                className="rounded-3xl bg-white/80 border border-paper-200 p-8 md:p-10 backdrop-blur-sm"
+                className="rounded-3xl bg-black/30 border border-white/10 p-8 md:p-10 backdrop-blur-sm"
               >
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                   <div className="flex-1">
-                    <p className="font-serif text-xl md:text-2xl font-semibold text-ink-950">
+                    <p className="font-serif text-xl md:text-2xl font-semibold text-white">
                       {exp.role}
                     </p>
-                    <p className="mt-1 text-base text-ink-950/70">
+                    <p className="mt-1 text-base text-white/70">
                       {exp.companyUrl ? (
                         <a
                           href={exp.companyUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="font-medium text-accent-600 link-underline"
+                          className="font-medium text-accent-500 link-underline"
                         >
                           {exp.company}
                         </a>
                       ) : (
-                        <span className="font-medium">{exp.company}</span>
+                        <span className="font-medium text-white/90">{exp.company}</span>
                       )}
                       {" "}&middot; {exp.location}
                     </p>
                   </div>
-                  <p className="text-sm text-ink-950/50 font-mono whitespace-nowrap">{exp.period}</p>
+                  <p className="text-sm text-white/50 font-mono whitespace-nowrap">{exp.period}</p>
                 </div>
                 <ul className="mt-5 space-y-2">
                   {exp.bullets.map((b, j) => (
-                    <li key={j} className="flex gap-3 text-[15px] leading-relaxed text-ink-950/70">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-600 shrink-0" />
+                    <li key={j} className="flex gap-3 text-[15px] leading-relaxed text-white/80">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-500 shrink-0" />
                       {b}
                     </li>
                   ))}
@@ -285,7 +286,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ════════ RESEARCH / WORKING PAPERS ════════ */}
+      {/* ════════ RESEARCH / WORKING PAPERS (with Academic.jpg + abstract) ════════ */}
       <section id="research" className="section-light py-24 md:py-32">
         <div className="mx-auto max-w-[1200px] px-6">
           <div className="fade-up mb-12">
@@ -296,19 +297,61 @@ export default function Page() {
             {profile.workingPapers.map((p, i) => (
               <div
                 key={`paper-${i}`}
-                className="rounded-3xl bg-white/80 border border-paper-200 p-8 md:p-10"
+                className="rounded-3xl bg-white/80 border border-paper-200 overflow-hidden"
               >
-                <p className="font-serif text-xl md:text-2xl font-semibold text-ink-950 leading-snug">
-                  {p.title}
-                </p>
-                <p className="mt-2 text-[15px] text-ink-950/60">{p.authors}</p>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  {p.links.map((l) => (
-                    <ArrowLink key={l.href} href={l.href} label={l.label} />
-                  ))}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
+                  {p.image && (
+                    <div className="md:col-span-5">
+                      <img
+                        src={p.image}
+                        alt=""
+                        className="w-full h-full object-cover aspect-[16/10] md:aspect-auto"
+                      />
+                    </div>
+                  )}
+                  <div className={`${p.image ? "md:col-span-7" : ""} p-8 md:p-10 flex flex-col justify-center`}>
+                    <p className="font-serif text-xl md:text-2xl font-semibold text-ink-950 leading-snug">
+                      {p.title}
+                    </p>
+                    <p className="mt-2 text-[15px] text-ink-950/60">{p.authors}</p>
+                    {p.abstract && (
+                      <p className="mt-4 text-[15px] leading-relaxed text-ink-950/70">
+                        {p.abstract}
+                      </p>
+                    )}
+                    <div className="mt-5 flex flex-wrap gap-3">
+                      {p.links.map((l) => (
+                        <ArrowLink key={l.href} href={l.href} label={l.label} />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════ LEADERSHIP (with background image) ════════ */}
+      <section className="section-full">
+        <div
+          className="section-bg"
+          style={{ backgroundImage: `url(${profile.leadership[0].image})` }}
+        />
+        <div className="relative z-10 mx-auto max-w-[1200px] px-6 w-full py-24 md:py-32">
+          <div className="fade-up max-w-2xl">
+            <SectionLabel>
+              <span className="text-white/70">Leadership</span>
+            </SectionLabel>
+            <h2 className="font-serif text-3xl md:text-5xl font-semibold tracking-tight text-white leading-[1.1]">
+              {profile.leadership[0].org}
+            </h2>
+            <p className="mt-4 text-lg text-white/80 font-medium">
+              {profile.leadership[0].role}
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-white/70 max-w-[55ch]">
+              {profile.leadership[0].description}
+            </p>
           </div>
         </div>
       </section>
@@ -349,7 +392,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ════════ COURSES ════════ */}
+      {/* ════════ COURSES / ACADEMIC FOUNDATION ════════ */}
       <section id="courses" className="section-light py-24 md:py-32">
         <div className="mx-auto max-w-[1200px] px-6">
           <div className="fade-up mb-12">
@@ -379,30 +422,6 @@ export default function Page() {
                 </ul>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ════════ LEADERSHIP (with background image) ════════ */}
-      <section className="section-full">
-        <div
-          className="section-bg"
-          style={{ backgroundImage: `url(${profile.leadership[0].image})` }}
-        />
-        <div className="relative z-10 mx-auto max-w-[1200px] px-6 w-full py-24 md:py-32">
-          <div className="fade-up max-w-2xl">
-            <SectionLabel>
-              <span className="text-white/70">Leadership</span>
-            </SectionLabel>
-            <h2 className="font-serif text-3xl md:text-5xl font-semibold tracking-tight text-white leading-[1.1]">
-              {profile.leadership[0].org}
-            </h2>
-            <p className="mt-4 text-lg text-white/80 font-medium">
-              {profile.leadership[0].role}
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-white/70 max-w-[55ch]">
-              {profile.leadership[0].description}
-            </p>
           </div>
         </div>
       </section>

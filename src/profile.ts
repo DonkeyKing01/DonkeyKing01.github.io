@@ -37,6 +37,7 @@ export type Profile = {
     title: string;
     authors: string;
     abstract?: string;
+    image?: string;
     links: Array<{ label: string; href: string }>;
   }>;
 
@@ -152,6 +153,9 @@ export const profile: Profile = {
       title:
         "Narratives in Crisis and Optimal Manipulation Level for Public Media",
       authors: "Yuecheng He, Punuo Zhang",
+      abstract:
+        "This paper examines the role of media narratives during financial crises and derives the optimal level of information manipulation for public media. Using a global games framework, we analyze how policy interventions through narrative control can either stabilize or destabilize stock markets, and characterize the welfare-maximizing media strategy under crisis conditions.",
+      image: "/Academic.jpg",
       links: [{ label: "PDF", href: "/narratives_in_crisis.pdf" }]
     }
   ],

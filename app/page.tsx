@@ -82,42 +82,56 @@ export default function Page() {
       <NavBar />
 
       {/* ════════ HERO ════════ */}
-      <section className="section-full" style={{ background: "linear-gradient(160deg, #1a1a1a 0%, #2a2520 100%)" }}>
-        <div className="relative z-10 mx-auto max-w-[1200px] px-6 w-full py-32 md:py-0">
+      <section className="section-full overflow-hidden bg-[linear-gradient(135deg,#f7f2ea_0%,#efe4d7_48%,#d8c6b8_100%)]">
+        <div className="absolute inset-0">
+          <div className="absolute left-[-8%] top-20 h-56 w-56 rounded-full bg-white/45 blur-3xl" />
+          <div className="absolute right-[-4%] top-1/4 h-72 w-72 rounded-full bg-[#c89e7a]/20 blur-3xl" />
+          <div className="absolute bottom-[-12%] left-1/3 h-64 w-64 rounded-full bg-[#8b6b52]/10 blur-3xl" />
+        </div>
+        <div className="relative z-10 mx-auto grid w-full max-w-[1200px] items-center gap-16 px-6 py-28 md:grid-cols-[1.1fr_0.9fr] md:py-0">
           <div className="max-w-2xl">
-            <p className="text-sm tracking-[0.2em] uppercase text-white/70 mb-4">
-              {profile.tagline}
+            <p className="mb-5 text-sm font-medium uppercase tracking-[0.28em] text-ink-950/45">
+              Welcome
             </p>
-            <h1 className="font-serif text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05]">
-              {profile.name}
+            <h1 className="font-serif text-5xl font-semibold tracking-tight text-ink-950 leading-[1.03] md:text-7xl">
+              Hi I&apos;m Yuecheng He, you can call me Reed.
             </h1>
-            <p className="mt-2 font-serif text-2xl md:text-3xl text-white/80 font-light italic">
-              goes by {profile.displayName}
+            <p className="mt-6 max-w-[28ch] text-xl leading-relaxed text-ink-950/70 md:text-2xl">
+              I&apos;m an Information system researcher and Product manager
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-10 flex flex-wrap gap-3">
               {profile.links.map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/20"
+                  className="inline-flex items-center gap-2 rounded-full border border-ink-950/10 bg-white/75 px-5 py-2 text-sm font-medium text-ink-950 shadow-sm backdrop-blur-sm transition hover:bg-white"
                 >
                   {l.label}
                 </a>
               ))}
               <a
                 href={`mailto:${profile.email}`}
-                className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/20"
+                className="inline-flex items-center gap-2 rounded-full border border-ink-950/10 bg-ink-950 px-5 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-ink-900"
               >
                 Email
               </a>
             </div>
           </div>
+          <div className="mx-auto w-full max-w-[320px] md:max-w-[420px]">
+            <div className="relative aspect-square rounded-full border border-white/70 bg-white/35 p-4 shadow-[0_32px_80px_rgba(90,65,45,0.22)] backdrop-blur-md">
+              <div className="absolute inset-6 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.7),rgba(255,255,255,0.12))]" />
+              <img
+                src="/welcome.jpg"
+                alt="Welcome portrait of Yuecheng He"
+                className="relative h-full w-full rounded-full border border-white/60 object-cover object-center"
+              />
+            </div>
+          </div>
         </div>
-        {/* scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 bounce-down">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white/60">
+        <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 bounce-down">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-ink-950/40">
             <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>

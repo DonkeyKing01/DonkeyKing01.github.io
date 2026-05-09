@@ -1,7 +1,6 @@
-// ── Types ──────────────────────────────────────────────────────────
 export type Profile = {
   name: string;
-  displayName: string; // "Reed"
+  displayName: string;
   tagline: string;
   bio: string;
   email: string;
@@ -11,245 +10,209 @@ export type Profile = {
   cvHref: string;
   links: Array<{ label: string; href: string; icon?: string }>;
   researchInterests: string[];
-
-  professionalExperience: Array<{
-    role: string;
-    company: string;
-    companyUrl?: string;
-    location: string;
-    period: string;
-    image?: string;
-    bullets: string[];
-  }>;
-
-  hackathonExperience: Array<{
-    role: string;
-    event: string;
-    eventUrl?: string;
-    award?: string;
-    location: string;
-    image?: string;
-    bullets: string[];
-    links: Array<{ label: string; href: string }>;
-  }>;
-
-  workingPapers: Array<{
+  publications: Array<{
     title: string;
     authors: string;
     abstract?: string;
     image?: string;
     links: Array<{ label: string; href: string }>;
   }>;
-
+  academicExperience: Array<{
+    role: string;
+    company: string;
+    location: string;
+    period: string;
+    image?: string;
+    bullets: string[];
+  }>;
   skillsAndProjects: Array<{
     title: string;
     description: string;
     tags: string[];
     links: Array<{ label: string; href: string }>;
   }>;
-
   courseCategories: Array<{
     category: string;
     courses: Array<{ name: string; note?: string }>;
   }>;
-
   education: Array<{
     school: string;
     degree: string;
     period: string;
+    major?: string;
+    minor?: string;
   }>;
-
-  leadership: Array<{
+  socialActivity: Array<{
     org: string;
     role: string;
     description: string;
     image?: string;
   }>;
-
   footerNote: string;
 };
 
-// ── Data ───────────────────────────────────────────────────────────
 export const profile: Profile = {
-  name: "Yuecheng He",
-  displayName: "Reed",
+  name: "Qingyang Jin",
+  displayName: "Qingyang",
   tagline:
-    "Economics & Artificial Intelligence | Fudan University Undergraduate (2024 - 2028)",
-  bio: "I am an economics student interested in macroeconomics, information systems, and the innovation frontier in recent years — LLMs, agentic science, and related topics. My current work studies how policy interventions can trigger stock-market crises using a global games framework. As an interdisciplinary researcher, I am open to collaborations across FinAI, information systems, and HCI.",
-  email: "yche24@m.fudan.edu.cn",
+    "Industrial Design (major) & Computer Science (minor) | Shanghai Jiao Tong University Undergraduate (2024 - 2028)",
+  bio: "I am an industrial design student interested in the paradigm shift in human-computer interaction in the AI era, including agent-native software and smart hardware. I am passionate about exploring cutting-edge AI tools and enjoy trying them out, providing feedback, and making open-source contributions in my workflow. I am very happy to collaborate with researchers and developers from across disciplines.",
+  email: "qingyang.jin@outlook.com",
   location: "Shanghai, China",
-  photo: { src: "/photo.jpg", alt: "Portrait photo of Reed (Yuecheng He)" },
-  heroBg: "/Fudan.jpg",
-  cvHref: "/cv.pdf",
+  photo: { src: "/photo.png", alt: "Portrait photo of Qingyang Jin" },
+  heroBg: "/boat.jpg",
+  cvHref: "/cv%20.pdf",
   links: [
-    { label: "GitHub", href: "https://github.com/Reed2006" },
+    { label: "GitHub", href: "https://github.com/DonkeyKing01" },
     {
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/yuecheng-he-77b260390/"
+      href: "https://www.linkedin.com/in/qingyang-jin-9397783a8/"
     }
   ],
   researchInterests: [
-    "Information systems",
-    "FinAI",
-    "Macrofinance",
-    "Mechanism design",
-    "HCI"
+    "HCI",
+    "Engineering Design",
+    "Multi-Agent Systems",
+    "UI/UX Design"
   ],
-
-  // ── Professional Experience ──────────────────────────────────────
-  professionalExperience: [
-    {
-      role: "Macroeconomics Analyst Intern",
-      company: "CITIC",
-      companyUrl: "https://www.citic.com/en/",
-      location: "Shanghai, China",
-      period: "Jun 2025 - Sep 2025",
-      bullets: [
-        "Using macroeconomics framework to measure the cost of raising a child.",
-        "Applying Machine Learning methods and SARIMA model for forecasting China's Offshore RMB Interest Rate Spread.",
-        "Utilizing advanced AI (Gemini, Claude) for autonomous Analysis Framework building based on N8N workflow."
-      ]
-    },
-    {
-      role: "Undergraduate Research Apprentice",
-      company: "Fudan University",
-      location: "Shanghai, China",
-      period: "2024 - Present",
-      image: "/Academic.jpg",
-      bullets: [
-        "Currently working on quantitative finance — automating data cleaning, data collection, and strategy design.",
-        "Completed research on Reforms in SOEs of China, contributing to policy suggestions."
-      ]
-    }
-  ],
-
-  // ── Hackathon ────────────────────────────────────────────────────
-  hackathonExperience: [
-    {
-      role: "Product Manager & UI Designer",
-      event: "ModelScope AI Hackathon Tour",
-      eventUrl: "https://modelscope.cn/active/ai-hackathon-tour",
-      award: "Most Popular Award",
-      location: "Nanjing / Shanghai, China",
-      image: "/hackathon.jpg",
-      bullets: [
-        "Designed taste-driven UI utilizing custom skills and hub resources.",
-        "Created a product centered on the \"memory\" of one's travel experience.",
-        "Built the full product lifecycle: keeping memory via multi-agent system, searching memory by RAG, and sharing memory through community."
-      ],
-      links: [
-        { label: "Demo", href: "https://reed2006.github.io/yuanlu-web-demo/" },
-        {
-          label: "Introduction",
-          href: "https://mp.weixin.qq.com/s/cRq-ADioB4lxpiVcxzi1MQ"
-        }
-      ]
-    }
-  ],
-
-  // ── Working Papers ───────────────────────────────────────────────
-  workingPapers: [
+  publications: [
     {
       title:
-        "Narratives in Crisis and Optimal Manipulation Level for Public Media",
-      authors: "Yuecheng He, Punuo Zhang",
+        "Mapping consumer voice into engineering insight  a structured language model-driven design support framework for electric vehicles",
+      authors: "Qingyang Jin, Luyao Wang, Wenyu Yuan & Danni Chang",
       abstract:
-        "This paper examines the role of media narratives during financial crises and derives the optimal level of information manipulation for public media. Using a global games framework, we analyze how policy interventions through narrative control can either stabilize or destabilize stock markets, and characterize the welfare-maximizing media strategy under crisis conditions.",
-      image: "/Academic.jpg",
-      links: [{ label: "PDF", href: "/narratives_in_crisis.pdf" }]
+        "This paper proposes a structured language model-driven design support framework for translating consumer voice into engineering insight in electric vehicle design. By using language models to interpret user-generated feedback, the study maps consumer needs and perceptions onto design-relevant attributes, supporting a more systematic connection between market demand and engineering decision-making. The framework demonstrates how AI-assisted analysis can help designers identify actionable product improvement opportunities in the electric vehicle context.",
+      image: "/Academic.png",
+      links: [
+        {
+          label: "PDF",
+          href: "/Mapping consumer voice into engineering insight  a structured language model-driven design support framework for electric vehicles.pdf"
+        },
+        {
+          label: "Publication",
+          href: "https://www.tandfonline.com/doi/full/10.1080/09544828.2026.2639933"
+        }
+      ]
     }
   ],
-
-  // ── Skills & Projects ────────────────────────────────────────────
+  academicExperience: [
+    {
+      role: "PRP Research Project Member",
+      company: "Shanghai Jiao Tong University",
+      location: "Shanghai, China",
+      period: "Feb 2025 - Mar 2026",
+      image: "/Academic.png",
+      bullets: [
+        "Exploration of generative AI-driven engineering design based on principles of tool usability, efficiency improvement, and conversational interaction.",
+        "Developed an end-to-end research prototype, encompassing data processing, user and product modeling, and interactive applications.",
+        "Co-authored research papers and successfully published in academic journals"
+      ]
+    },
+    {
+      role: "Undergraduate Research Assistant",
+      company: "Shanghai Jiao Tong University",
+      location: "Shanghai, China",
+      period: "Jun 2025 - Nov 2025",
+      bullets: [
+        "Mechanical structure design and optimization of dynamic spinal orthotics from line contact to surface contact.",
+        "Data collection via MMG and IMU wearable devices.",
+        "Participated in scoliosis calibration and data analysis."
+      ]
+    },
+    {
+      role: "Undergraduate Project Assistant",
+      company: "Shanghai Jiao Tong University & COMAC Flight Test Center",
+      location: "Shanghai, China",
+      period: "Jul 2025 - Dec 2025",
+      bullets: [
+        "CAD model refinement and engineering integration.",
+        "Improved standard documentation for design review proposals."
+      ]
+    }
+  ],
   skillsAndProjects: [
     {
-      title: "NLP & LLMs",
+      title: "User Study",
       description:
-        "LLMs (including local LLM workflows), BERT-style models, and NLP methods applied to economic research.",
-      tags: ["NLP", "LLMs", "BERT", "Agentic AI"],
-      links: [{ label: "Working paper", href: "/narratives_in_crisis.pdf" }]
-    },
-    {
-      title: "Data Engineering",
-      description:
-        "Data cleaning, collection, and feature engineering for research datasets.",
-      tags: ["Python", "Pandas", "SQL", "Feature engineering"],
-      links: [{ label: "Working paper", href: "/narratives_in_crisis.pdf" }]
-    },
-    {
-      title: "UI / Product Design",
-      description:
-        "Taste-driven UI design with focus on layout, typography, and component systems.",
-      tags: ["UI", "Design", "Frontend", "Figma"],
+        "Conducting design research and user studies with LLMs, NLP and Agent workflows.",
+      tags: ["User Study", "LLMs", "NLP", "Workflow"],
       links: [
         {
-          label: "Notes site",
-          href: "https://reed2006.github.io/Awesome_Notes_Site/"
-        }
-      ]
-    },
-    {
-      title: "Machine Learning",
-      description:
-        "ML/DL methods for causal inference, asset pricing, mechanism design, and multi-agent frameworks.",
-      tags: ["ML", "Deep learning", "Causal inference", "Multi-agent"],
-      links: [
+          label: "Publication",
+          href: "https://www.tandfonline.com/doi/full/10.1080/09544828.2026.2639933"
+        },
         {
           label: "Project repo",
-          href: "https://github.com/Reed2006/-Re-imaging-the-price-trend"
+          href: "https://github.com/DonkeyKing01/nev-product-search-kit"
         }
       ]
+    },
+    {
+      title: "Agents & AI Tools",
+      description:
+        "The software and hardware product design of the AI ​​agent native takes into account both business needs and user experience.",
+      tags: ["Agents", "AI Native", "Innovation Product", "Skills"],
+      links: [{ label: "Project repo", href: "https://github.com/DonkeyKing01/BriefyPet" }]
+    },
+    {
+      title: "Frontend Design",
+      description: "Exploring front-end design skills that emphasize aesthetic taste, interactive experience, and information hierarchy.",
+      tags: ["UI", "Design", "Frontend", "Figma", "Information hierarchy"],
+      links: [
+        {
+          label: "Web demo",
+          href: "https://donkeyking01.github.io/mushroom-app/"
+        },
+        {
+          label: "Skill repo",
+          href: "https://github.com/DonkeyKing01/tasteful-ui-skill"
+        }
+      ]
+    },
+    {
+      title: "CAD & Mechanical Design",
+      description: "A complete design chain from sketch concept and CAD model to manufacturing process.",
+      tags: ["Ergonomics", "Mechanics", "Simulation", "CAD", "Manufacturing"],
+      links: [{ label: "Model showcase", href: "/model.png" }]
     }
   ],
-
-  // ── Courses (categorized) ────────────────────────────────────────
   courseCategories: [
     {
-      category: "Mathematics & Statistics",
+      category: "Mathematics & Computer Science",
       courses: [
-        { name: "Calculus", note: "A" },
-        { name: "Linear Algebra", note: "A" },
+        { name: "Calculus", note: "A+" },
+        { name: "Linear Algebra", note: "A+" },
         { name: "Probability and Mathematical Statistics", note: "A" },
-        { name: "Convex Optimization", note: "A" }
+        { name: "Discrete Mathematics", note: "Studying" },
+        { name: "Computer Network", note: "Studying" }
       ]
     },
     {
-      category: "Computer Science",
+      category: "Design & HCI",
       courses: [
-        { name: "Data Structures", note: "A" },
-        { name: "Introduction to Computer Systems (CS15213)", note: "A" }
-      ]
-    },
-    {
-      category: "Economics & Finance",
-      courses: [
-        { name: "Microeconomics", note: "A" },
-        { name: "Macroeconomics", note: "A" },
-        { name: "Game Theory (H)", note: "A+" },
-        { name: "Corporate Finance (H)", note: "A+" }
+        { name: "Product Design", note: "A+" },
+        { name: "Product Information Architecture", note: "A+" },
+        { name: "Creative Modeling and Design", note: "A+" }
       ]
     }
   ],
-
-  // ── Education ────────────────────────────────────────────────────
   education: [
     {
-      school: "School of Economics, Fudan University",
+      school: "School of Design, Shanghai Jiao Tong University",
+      major: "Industrial Design",
+      minor: "Computer Science",
       degree: "Undergraduate",
       period: "2024 - 2028"
     }
   ],
-
-  // ── Leadership ───────────────────────────────────────────────────
-  leadership: [
+  socialActivity: [
     {
-      org: "Fudan Students' Union",
-      role: "Organizer — AI Training & Social Responsibility Campaign",
+      org: "Shu Ping Alumni Association",
+      role: "Volunteer - photography & IT maintenance",
       description:
-        "Conducted courses to help freshmen adapt to campus life and encouraged knowledge sharing in AI, Agent systems, and interdisciplinary topics across Fudan.",
-      image: "/Leadership.jpg"
+        "Responsible for taking photos during the summer camp activities and maintaining the shuping query system with Kangning Yuan.",
+      image: "/Shuping.jpg"
     }
   ],
-
-  footerNote: "Updated March 2026"
+  footerNote: "Updated May 2026"
 };

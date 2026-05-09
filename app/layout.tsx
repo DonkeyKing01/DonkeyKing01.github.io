@@ -25,7 +25,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${profile.displayName} (${profile.name}) | Economics & AI`,
+  title: `${profile.name} | Design, HCI, and AI-native Products`,
   description: profile.bio
 };
 

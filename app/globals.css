@@ -16,8 +16,8 @@ body {
 }
 
 body {
-  background: #FAFAF8;
-  color: #1a1a1a;
+  background: #f4f8fb;
+  color: #0f172a;
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -25,28 +25,16 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* ── Full-screen section base ─────────────────────────────────── */
 .section-full {
   position: relative;
   min-height: 100dvh;
   display: flex;
   align-items: center;
   overflow: hidden;
+  background-size: cover;
+  background-position: center;
 }
 
-/* ── Hero overlay ─────────────────────────────────────────────── */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(26, 26, 26, 0.25) 0%,
-    rgba(26, 26, 26, 0.55) 100%
-  );
-  z-index: 1;
-}
-
-/* ── Section background image ─────────────────────────────────── */
 .section-bg {
   position: absolute;
   inset: 0;
@@ -55,22 +43,30 @@ body {
   z-index: 0;
 }
 
-.section-bg::after {
-  content: "";
+.hero-overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(
     to bottom,
-    rgba(26, 26, 26, 0.3) 0%,
-    rgba(26, 26, 26, 0.65) 100%
+    rgba(15, 23, 42, 0.32) 0%,
+    rgba(15, 23, 42, 0.58) 100%
   );
 }
 
-/* ── Scroll-triggered fade-in ─────────────────────────────────── */
+.hero-overlay-cool {
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 47, 73, 0.36) 0%,
+    rgba(15, 23, 42, 0.68) 100%
+  );
+}
+
 .fade-up {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
     transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -79,58 +75,99 @@ body {
   transform: translateY(0);
 }
 
-/* ── Stagger children ─────────────────────────────────────────── */
 .stagger > * {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+  transition:
+    opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
     transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.stagger.visible > *:nth-child(1) { transition-delay: 0ms; }
-.stagger.visible > *:nth-child(2) { transition-delay: 80ms; }
-.stagger.visible > *:nth-child(3) { transition-delay: 160ms; }
-.stagger.visible > *:nth-child(4) { transition-delay: 240ms; }
-.stagger.visible > *:nth-child(5) { transition-delay: 320ms; }
-.stagger.visible > *:nth-child(6) { transition-delay: 400ms; }
+.stagger.visible > *:nth-child(1) {
+  transition-delay: 0ms;
+}
+
+.stagger.visible > *:nth-child(2) {
+  transition-delay: 80ms;
+}
+
+.stagger.visible > *:nth-child(3) {
+  transition-delay: 160ms;
+}
+
+.stagger.visible > *:nth-child(4) {
+  transition-delay: 240ms;
+}
+
+.stagger.visible > *:nth-child(5) {
+  transition-delay: 320ms;
+}
+
+.stagger.visible > *:nth-child(6) {
+  transition-delay: 400ms;
+}
 
 .stagger.visible > * {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ── Sticky nav ───────────────────────────────────────────────── */
 .nav-blur {
-  backdrop-filter: blur(12px) saturate(1.6);
-  -webkit-backdrop-filter: blur(12px) saturate(1.6);
+  backdrop-filter: blur(14px) saturate(1.35);
+  -webkit-backdrop-filter: blur(14px) saturate(1.35);
 }
 
-/* ── Scroll indicator bounce ──────────────────────────────────── */
 @keyframes bounce-down {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(6px);
+  }
 }
 
 .bounce-down {
   animation: bounce-down 2s ease-in-out infinite;
 }
 
-/* ── Content section alternating backgrounds ──────────────────── */
 .section-light {
-  background: #FAFAF8;
+  background:
+    radial-gradient(circle at top left, rgba(103, 232, 249, 0.08), transparent 24%),
+    linear-gradient(180deg, #f5f9fc 0%, #eef5fa 100%);
+}
+
+.section-soft {
+  background:
+    radial-gradient(circle at top left, rgba(103, 232, 249, 0.06), transparent 24%),
+    linear-gradient(180deg, #eef5fa 0%, #e7f0f7 100%);
 }
 
 .section-warm {
-  background: #F5F4F1;
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 24%),
+    linear-gradient(180deg, #e8f1f7 0%, #dce8f1 100%);
 }
 
-/* ── Link hover underline ─────────────────────────────────────── */
+.section-cool {
+  background:
+    radial-gradient(circle at top right, rgba(125, 211, 252, 0.1), transparent 24%),
+    linear-gradient(180deg, #edf4f8 0%, #e6eef5 100%);
+}
+
+.section-dark {
+  background:
+    radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), transparent 22%),
+    linear-gradient(180deg, #0f172a 0%, #111827 100%);
+}
+
 .link-underline {
   text-decoration: none;
   background-image: linear-gradient(currentColor, currentColor);
-  background-position: 0% 100%;
+  background-position: 0 100%;
   background-repeat: no-repeat;
-  background-size: 0% 1px;
+  background-size: 0 1px;
   transition: background-size 0.3s ease;
 }
 

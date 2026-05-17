@@ -61,7 +61,7 @@ export const profile: Profile = {
   location: "Shanghai, China",
   photo: { src: "/photo.png", alt: "Portrait photo of Qingyang Jin" },
   heroBg: "/boat.jpg",
-  cvHref: "/cv%20.pdf",
+  cvHref: "/cv.pdf",
   links: [
     { label: "GitHub", href: "https://github.com/DonkeyKing01" },
     {
